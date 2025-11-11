@@ -1,10 +1,7 @@
 // ========================================
-// MAIN.SCSS - Punto de entrada SASS
-// ========================================
-// Importa todos los módulos y define estilos globales
+// STYLES-SIMPLE.SCSS - Para index-simple.html
 // ========================================
 
-// Importar módulos SASS
 @use 'variables' as *;
 @use 'gallery';
 
@@ -24,12 +21,9 @@ html {
 
 body {
     font-family: $font-main;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e8eaed 100%);
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
     color: #333;
     line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 // ========================================
@@ -39,22 +33,19 @@ body {
 header {
     background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
     color: white;
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 0.5rem;
         font-family: $font-heading;
-        font-weight: 700;
-        letter-spacing: 1px;
     }
 
     p {
-        font-size: 1.05rem;
+        font-size: 1rem;
         opacity: 0.95;
-        margin: 0;
     }
 }
 
@@ -63,11 +54,8 @@ header {
 // ========================================
 
 main {
-    flex: 1;
-    padding: 3rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
+    min-height: 60vh;
+    padding: 2rem 1rem;
 }
 
 // ========================================
@@ -78,53 +66,17 @@ footer {
     background: #2c3e50;
     color: white;
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
     font-size: 0.9rem;
-    margin-top: auto;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-
-    p {
-        margin: 0;
-    }
 }
 
 // ========================================
 // RESPONSIVE
 // ========================================
 
-@media (max-width: 1024px) {
-    main {
-        padding: 2rem 1.5rem;
-    }
-
-    header {
-        padding: 2rem 1rem;
-
-        h1 {
-            font-size: 2rem;
-        }
-    }
-}
-
 @media (max-width: 768px) {
-    header {
-        padding: 1.5rem 1rem;
-
-        h1 {
-            font-size: 1.6rem;
-        }
-
-        p {
-            font-size: 0.95rem;
-        }
-    }
-
-    main {
-        padding: 1.5rem 1rem;
-    }
-
-    footer {
-        padding: 1.5rem 1rem;
-        font-size: 0.85rem;
+    header h1 {
+        font-size: 1.5rem;
     }
 }

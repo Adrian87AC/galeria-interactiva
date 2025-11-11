@@ -1,0 +1,40 @@
+// ========================================
+// VARIABLES SASS - Colores y Tipografía
+// ========================================
+// Este archivo contiene las "variables globales"
+// que se reutilizan en otros módulos SASS.
+// La ventaja: cambiar un color aquí afecta
+// a todo el proyecto automáticamente.
+// ========================================
+
+// ---- OVERLAY ----
+// Color de fondo del overlay (semitransparente)
+// Prueba a cambiar el valor: rgba(0, 0, 0, 0.5) para más transparencia
+// o rgba(255, 100, 100, 0.7) para un overlay rojo
+$overlay-bg-color: rgba(0, 0, 0, 0.7);
+
+// Color del texto dentro del overlay
+$overlay-text-color: #ffffff;
+
+// ---- TIPOGRAFÍA ----
+// Fuente principal para todo el sitio
+$font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// Fuente para encabezados (h1, h2, h3)
+$font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// ---- TRANSICIONES ----
+// Duración de las transiciones (opacity, transform, etc)
+// Úsalo en: transition: opacity $transition-speed $transition-timing;
+$transition-speed: 0.3s;
+
+// Tipo de animación (ease-in-out, ease, linear, etc)
+$transition-timing: ease-in-out;
+
+// ---- ESPACIADO Y BORDES ----
+// Radio de borde para las tarjetas
+$border-radius: 8px;
+
+// Padding (relleno) en tarjetas
+$card-padding: 0;
+

@@ -1,194 +1,209 @@
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+// ========================================
+// GALLERY STYLES - Estructura y Overlay
+// ========================================
+// Este módulo contiene los estilos para las tarjetas de días
+// y sus galerías internas con overlays de imágenes.
+// Patrón: Dos niveles de overlays anidados
+// 1. day-overlay → Aparece al pasar ratón sobre .day-card
+// 2. image-overlay → Aparece al pasar ratón sobre .image-item
+// ========================================
 
-  img {
-    width: 320px;
-    height: 220px;
-    object-fit: cover; /* recorta centrado sin deformar */
-    display: block;
-    transition: transform 0.3s ease;
+// Importar variables
+@use 'variables' as *;
+
+// ========================================
+// CONTENEDOR DE LA SEMANA SANTA
+// ========================================
+
+.semana-santa {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    > h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+}
+
+// ========================================
+// TARJETA DE DÍA (Nivel 1: Overlay de Día)
+// ========================================
+// Estructura:
+// .day-card (position: relative)
+//   ├─ .day-header (títulos visibles siempre)
+//   └─ .day-overlay (position: absolute, oculto por defecto)
+//        └─ .gallery-grid (la galería de imágenes)
+// ========================================
+
+.day-card {
+    // 🔑 NIVEL 1 DE POSICIONAMIENTO
+    // position: relative aquí sirve de "ancla" para .day-overlay
+    position: relative;
+    
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: white;
+    cursor: pointer;
+    transition: transform $transition-speed $transition-timing;
 
     &:hover {
-      transform: scale(1.05);
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-  }
+
+    // ========================================
+    // ENCABEZADO DEL DÍA (siempre visible)
+    // ========================================
+    .day-header {
+        padding: 2rem;
+        background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+        color: white;
+        text-align: center;
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .day-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+    }
+
+    // ========================================
+    // OVERLAY DEL DÍA (Nivel 1)
+    // ========================================
+    // 🔑 CRUCIAL: El overlay se posiciona ABSOLUTO respecto a .day-card
+    // Esto hace que aparezca encima del .day-header al pasar el ratón
+    .day-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background-color: $overlay-bg-color;
+        
+        // Oculto por defecto
+        opacity: 0;
+        transition: opacity $transition-speed $transition-timing;
+        
+        // Padding para el contenido
+        padding: 2rem;
+        overflow-y: auto;  // Scroll si es necesario
+    }
+
+    // Mostrar overlay al pasar el ratón sobre .day-card
+    &:hover .day-overlay {
+        opacity: 1;
+    }
+
+} // Cierre de .day-card
+
+// ========================================
+// GALERÍA INTERNA (dentro del overlay del día)
+// ========================================
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    max-width: 100%;
 }
 
-/* Imágenes con el mismo tamaño (ajusta width/height según prefieras) */
-main img {
-    width: 320px;
-    height: 220px;
-    object-fit: cover; /* recorta centrado sin deformar */
-    display: block;
-}
+// ========================================
+// ITEM DE IMAGEN (Nivel 2: Overlay de Imagen)
+// ========================================
+// Estructura:
+// .image-item (position: relative)
+//   ├─ img (la imagen visible)
+//   └─ .image-overlay (position: absolute, oculto por defecto)
+// ========================================
 
-/* Estilos para overlay en cada imagen */
-.foto {
+.image-item {
+    // 🔑 NIVEL 2 DE POSICIONAMIENTO
+    // position: relative aquí sirve de "ancla" para .image-overlay
     position: relative;
-    display: inline-block;
-    width: 320px;
-    height: 220px;
-    margin: 0.5rem;
+    
+    width: 100%;
+    aspect-ratio: 4 / 3;  // Mantiene proporción
     overflow: hidden;
-    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform $transition-speed $transition-timing;
 
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    // La imagen
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
         display: block;
-        transition: transform .35s ease;
+        transition: filter $transition-speed $transition-timing;
     }
 
-    /* overlay degradado */
-    &::before {
-        content: "";
+    // Al hover, ligeramente oscurecer la imagen
+    &:hover img {
+        filter: brightness(0.7);
+    }
+
+    // ========================================
+    // OVERLAY DE LA IMAGEN (Nivel 2)
+    // ========================================
+    // 🔑 CRUCIAL: El overlay se posiciona ABSOLUTO respecto a .image-item
+    // Esto hace que aparezca encima de la imagen al pasar el ratón
+    .image-overlay {
         position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.0) 50%);
-        pointer-events: none;
-        transition: opacity .25s ease;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        background-color: $overlay-bg-color;
+        
+        // Oculto por defecto
+        opacity: 0;
+        transition: opacity $transition-speed $transition-timing;
+        
+        // Centrar el contenido (Flexbox)
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+
+        // Texto dentro del overlay
+        p {
+            color: $overlay-text-color;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    }
+
+    // Mostrar overlay al pasar el ratón
+    &:hover .image-overlay {
         opacity: 1;
     }
 
-    figcaption {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0.35rem;
-        padding: 0.5rem 0.6rem;
-        color: #fff;
-        font-weight: 600;
-        font-size: 0.95rem;
-        text-align: left;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-        pointer-events: none;
-    }
+} // Cierre de .image-item
 
-    &:hover img {
-        transform: scale(1.06);
-    }
-    &:hover::before {
-        opacity: 0.95;
-    }
-}
 
-/* Layout: mostrar las fotos en fila / rejilla flexible */
-.semana > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-/* H1 y P ocupan toda la fila encima de las fotos */
-.semana > div h1,
-.semana > div p {
-    flex-basis: 100%;
-    margin: 0 0 0.5rem 0;
-}
-
-/* Forzar todas las imágenes a tener el mismo tamaño */
-.semana > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: flex-start;
-}
-
-/* Contenedor fijo para cada foto */
-.foto {
-    flex: 0 0 240px; /* ancho base */
-    width: 240px;
-    height: 170px;
-    overflow: hidden;
-    position: relative;
-    background: #000;
-    margin: 0;
-}
-
-/* La imagen ocupa todo el contenedor y se recorta centrada */
-.foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    max-width: none; /* evita que imágenes grandes reduzcan el contenedor */
-    transition: transform .35s ease;
-}
-
-/* Hover opcional */
-.foto:hover img {
-    transform: scale(1.05);
-}
-
-/* Tamaño reducido para La Estrella */
-.foto.small {
-    flex: 0 0 160px;
-    width: 160px;
-    height: 120px;
-    overflow: hidden;
-}
-
-.foto.small img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* Tarjeta para cada div dentro de .semana */
-.semana > div.card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-/* Asegurar que títulos y párrafos ocupen la fila dentro de la tarjeta */
-.semana > div.card > h1,
-.semana > div.card > p {
-    flex-basis: 100%;
-    margin: 0;
-}
-
-/* Contenedor de fotos dentro de la tarjeta: mantener el layout existente */
-.semana > div.card .foto {
-    margin: 0.35rem 0;
-}
-
-/* Opcional: hacer que las fotos se distribuyan en fila dentro de la tarjeta */
-.semana > div.card {
-    /* los hijos .foto seguirán usando las reglas flex establecidas anteriormente */
-}
-
-/* Ajustes responsivos */
-@media (max-width: 900px) {
-    .foto {
-        flex: 0 0 200px;
-        width: 200px;
-        height: 150px;
-    }
-    .semana > div.card { padding: 0.8rem; }
-}
-@media (max-width: 600px) {
-    .semana > div { gap: 0.6rem; }
-    .foto {
-        flex: 1 1 100%;
-        width: 100%;
-        height: 180px;
-    }
-    .foto.small {
-        flex: 1 1 100%;
-        width: 100%;
-        height: 140px;
-    }
-    .semana > div.card { padding: 0.6rem; }
-}
