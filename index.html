@@ -179,8 +179,11 @@
             </section>
         </main>
         <script>
-            // Envuelve cada <img> en <figure class="foto"> y mueve el <h2> previo a <figcaption>
+            // Marca cada div dentro de .semana como tarjeta y envuelve las imágenes en <figure class="foto">
             document.addEventListener('DOMContentLoaded', () => {
+                // añadir clase card a cada sección diaria
+                document.querySelectorAll('.semana > div').forEach(d => d.classList.add('card'));
+
                 document.querySelectorAll('main img').forEach(img => {
                    
                     if (img.parentElement && img.parentElement.classList.contains('foto')) return;
@@ -190,6 +193,11 @@
 
                     const fig = document.createElement('figure');
                     fig.className = 'foto';
+
+                    // Si es "La Estrella", añadir clase para reducir tamaño
+                    if (titleText === 'La Estrella') {
+                        fig.classList.add('small');
+                    }
 
                     // reemplaza la imagen por la figura y mueve la img dentro
                     img.replaceWith(fig);
