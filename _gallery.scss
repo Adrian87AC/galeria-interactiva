@@ -1,0 +1,157 @@
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+
+  img {
+    width: 320px;
+    height: 220px;
+    object-fit: cover; /* recorta centrado sin deformar */
+    display: block;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* Imágenes con el mismo tamaño (ajusta width/height según prefieras) */
+main img {
+    width: 320px;
+    height: 220px;
+    object-fit: cover; /* recorta centrado sin deformar */
+    display: block;
+}
+
+/* Estilos para overlay en cada imagen */
+.foto {
+    position: relative;
+    display: inline-block;
+    width: 320px;
+    height: 220px;
+    margin: 0.5rem;
+    overflow: hidden;
+    background: #000;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform .35s ease;
+    }
+
+    /* overlay degradado */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.0) 50%);
+        pointer-events: none;
+        transition: opacity .25s ease;
+        opacity: 1;
+    }
+
+    figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0.35rem;
+        padding: 0.5rem 0.6rem;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: left;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        pointer-events: none;
+    }
+
+    &:hover img {
+        transform: scale(1.06);
+    }
+    &:hover::before {
+        opacity: 0.95;
+    }
+}
+
+/* Layout: mostrar las fotos en fila / rejilla flexible */
+.semana > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+/* H1 y P ocupan toda la fila encima de las fotos */
+.semana > div h1,
+.semana > div p {
+    flex-basis: 100%;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Forzar todas las imágenes a tener el mismo tamaño */
+.semana > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+/* Contenedor fijo para cada foto */
+.foto {
+    flex: 0 0 240px; /* ancho base */
+    width: 240px;
+    height: 170px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    margin: 0;
+}
+
+/* La imagen ocupa todo el contenedor y se recorta centrada */
+.foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    max-width: none; /* evita que imágenes grandes reduzcan el contenedor */
+    transition: transform .35s ease;
+}
+
+/* Hover opcional */
+.foto:hover img {
+    transform: scale(1.05);
+}
+
+/* Tamaño reducido para La Estrella */
+.foto.small {
+    flex: 0 0 160px;
+    width: 160px;
+    height: 120px;
+    overflow: hidden;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 900px) {
+    .foto {
+        flex: 0 0 200px;
+        width: 200px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 600px) {
+    .semana > div { gap: 0.6rem; }
+    .foto {
+        flex: 1 1 100%;
+        width: 100%;
+        height: 180px;
+    }
+    .foto.small {
+        flex: 1 1 100%;
+        width: 100%;
+        height: 140px;
+    }
+}

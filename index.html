@@ -4,7 +4,7 @@
         <meta charset ="UTF-8">
         <meta name ="viewport" content = "width=device-width, initial-scale=1.0">
         <title>Galeria Interactiva de Adrián</title>
-        <link rel ="stylesheet" href ="styles/main.scss">
+        <link rel ="stylesheet" href ="_gallery.css">
     </head>
     <body>
         <header>
@@ -51,10 +51,10 @@
                     <img src="imagenes/Beso de Judas.jpg" alt="Hermandad de Beso de Judas de Sevilla">
 
                     <h2>San Gonzalo</h2>
-                    <img src="imagenes/La Candelaria.jpg" alt="Hermandad de San Gonzalo de Sevilla">
+                    <img src="imagenes/San Gonzalo.jpg" alt="Hermandad de San Gonzalo de Sevilla">
 
                     <h2>San Pablo</h2>
-                    <img src="imagenes/El Museo.jpg" alt="Hermandad de San Pablo de Sevilla">
+                    <img src="imagenes/San Pablo.jpg" alt="Hermandad de San Pablo de Sevilla">
 
                     <h2>Santa Marta</h2>
                     <img src="imagenes/Santa Marta.jpg" alt="Hermandad de Santa Marta de Sevilla">
@@ -130,6 +130,80 @@
                     <h2>Las siete palabras</h2>
                     <img src="imagenes/Las siete palabras.jpg" alt="Hermandad de Las siete palabras de Sevilla">
                 </div>
-            </body>
+                <div class ="Jueves Santo">
+                    <h1>Jueves Santo</h1>
+                    <p>Hermandades que procesionan el Jueves Santo en Sevilla</p>
+                    <h2>Monte-Sion</h2>
+                    <img src="imagenes/Monte-Sion.jpg" alt="Hermandad de Monte-Sion de Sevilla">
+                    
+                    <h2>Los Negritos</h2>
+                    <img src="imagenes/Los Negritos.jpg" alt="Hermandad de Los Negritos de Sevilla">
 
+                    <h2>El Valle</h2>
+                    <img src="imagenes/El Valle.jpg" alt="Hermandad de El Valle de Sevilla">
+
+                    <h2>La Quinta Angustia</h2>
+                    <img src="imagenes/La Quinta Angustia.jpg" alt="Hermandad de La Quinta Angustia de Sevilla">
+
+                    <h2>La exaltación</h2>
+                    <img src="imagenes/La Exaltación.jpg" alt="Hermandad de La Exaltación de Sevilla">
+
+                    <h2>La Pasión</h2>
+                    <img src="imagenes/La Pasión.jpg" alt="Hermandad de La Pasión de Sevilla">
+                    
+                    <h2>Las Cigarreras</h2>
+                    <img src="imagenes/Las Cigarreras.jpg" alt="Hermandad de Las Cigarreras de Sevilla">
+                </div>
+                <div class ="La Madrugá">
+                    <h1>La Madrugá</h1>
+                    <p>Hermandades que procesionan en La Madrugá en Sevilla</p>
+                    <h2>El Silencio</h2>
+                    <img src="imagenes/El Silencio.jpg" alt="Hermandad de El Silencio de Sevilla">
+
+                    <h2>La Macarena</h2>
+                    <img src="imagenes/La Macarena.jpg" alt="Hermandad de La Macarena de Sevilla">
+
+                    <h2>El Gran Poder</h2>
+                    <img src="imagenes/El Gran Poder.jpg" alt="Hermandad de El Gran Poder de Sevilla">
+
+                    <h2>La Esperanza de Triana</h2>
+                    <img src="imagenes/La Esperanza de Triana.jpg" alt="Hermandad de La Esperanza de Triana de Sevilla">
+                    
+                    <h2>Los gitanos</h2>
+                    <img src="imagenes/Los Gitanos.jpg" alt="Hermandad de Los Gitanos de Sevilla">
+                </div>
+
+
+
+
+            </section>
+        </main>
+        <script>
+            // Envuelve cada <img> en <figure class="foto"> y mueve el <h2> previo a <figcaption>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('main img').forEach(img => {
+                   
+                    if (img.parentElement && img.parentElement.classList.contains('foto')) return;
+
+                    const prev = img.previousElementSibling;
+                    const titleText = (prev && prev.tagName.toLowerCase() === 'h2') ? prev.textContent.trim() : '';
+
+                    const fig = document.createElement('figure');
+                    fig.className = 'foto';
+
+                    // reemplaza la imagen por la figura y mueve la img dentro
+                    img.replaceWith(fig);
+                    fig.appendChild(img);
+
+                    // crea figcaption con el texto del h2 si existe
+                    if (titleText) {
+                        const cap = document.createElement('figcaption');
+                        cap.textContent = titleText;
+                        fig.appendChild(cap);
+                        prev.remove(); // elimina el <h2> original
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
