@@ -1,123 +1,322 @@
+// ========================================
+// GALLERY STYLES - Sistema de overlays premium
+// ========================================
+
 @use 'variables' as *;
 
-// ===========================
-// TARJETA DE DÍA
-// ===========================
-.day-card {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+// ========================================
+// OVERLAY PRINCIPAL
+// ========================================
 
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  }
+.day-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, $overlay-bg-start 0%, $overlay-bg-end 100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s $transition-timing;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem;
+  backdrop-filter: blur(20px);
+  gap: 2rem;
+  z-index: 10;
 
-  .day-header {
-    background: linear-gradient(135deg, #3498db, #2c3e50);
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-
-    h3 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    p {
-      opacity: 0.9;
-      margin: 0;
-    }
-  }
-
-  // Overlay del día (nivel 1)
-  .day-overlay {
+  // Gradiente animado de fondo
+  &::before {
+    content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
-    padding: 2rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &:hover .day-overlay {
-    opacity: 1;
-    visibility: visible;
+    background: 
+      radial-gradient(circle at 30% 40%, rgba(139, 69, 19, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.1) 0%, transparent 60%);
+    animation: moveGradient 8s ease-in-out infinite;
   }
 }
 
-// ===========================
-// GALERÍA INTERNA
-// ===========================
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.2rem;
-  width: 100%;
-  max-width: 900px;
+.day-card:hover .day-overlay {
+  opacity: 1;
+  visibility: visible;
 }
 
-// ===========================
-// IMAGENES DE HERMANDADES
-// ===========================
-.image-item {
+// ========================================
+// CONTENEDOR DE HERMANDADES
+// ========================================
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 55%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding-right: 1rem;
   position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  z-index: 2;
 
-  &:hover {
-    transform: scale(1.05);
+  // Scrollbar personalizado dorado
+  &::-webkit-scrollbar {
+    width: 6px;
   }
 
-  img {
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, $color-dorado, $color-marron);
+    border-radius: 10px;
+  }
+}
+
+// ========================================
+// PANEL DE VISTA PREVIA
+// ========================================
+
+.image-preview {
+  width: 45%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+
+  .preview-placeholder {
     width: 100%;
     height: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    transition: filter 0.4s ease;
-  }
-
-  &:hover img {
-    filter: brightness(0.6);
-  }
-
-  // Overlay de imagen (nivel 2)
-  .image-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
+    max-height: 450px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 69, 19, 0.08) 100%);
+    border-radius: $border-radius-large;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.4s ease;
+    padding: 3rem 2rem;
+    border: 2px dashed rgba(212, 175, 55, 0.3);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '✨';
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+    }
 
     p {
-      color: #fff;
-      font-size: 1rem;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.5);
       text-align: center;
-      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: $font-weight-light;
     }
   }
 
-  &:hover .image-overlay {
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: $border-radius-large;
+    display: none;
+    border: 3px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 
+      $shadow-large,
+      0 0 60px rgba(212, 175, 55, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &.active {
+      display: block;
+      animation: zoomInRotate 0.7s $transition-timing;
+    }
+  }
+}
+
+// ========================================
+// TARJETAS DE HERMANDADES
+// ========================================
+
+.hermandad {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 240, 240, 0.9) 100%);
+  color: $color-texto-oscuro;
+  padding: $card-padding;
+  border-radius: $border-radius;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all $transition-speed $transition-timing;
+  animation: slideIn $transition-speed-slow ease backwards;
+  box-shadow: $shadow-small;
+
+  // Delays escalonados
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+
+  // Efecto de resplandor interno
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 69, 19, 0.3));
+    opacity: 0;
+    transition: opacity $transition-speed ease;
+  }
+
+  // Brillo deslizante
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateY(-50%);
+    transition: all $transition-speed-slow ease;
+  }
+
+  // Hover state
+  &:hover {
+    background: linear-gradient(135deg, $color-dorado 0%, $color-dorado-oscuro 100%);
+    color: white;
+    transform: translateX(10px) scale(1.03);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      $shadow-medium,
+      $shadow-glow;
+
+    &::before {
+      opacity: 1;
+    }
+
+    &::after {
+      width: 100%;
+      left: 100%;
+    }
+  }
+
+  // Active state (imagen visible)
+  &.active {
+    background: linear-gradient(135deg, $color-marron 0%, $color-marron-oscuro 100%);
+    color: $color-dorado;
+    transform: translateX(15px) scale(1.05);
+    border-color: rgba(212, 175, 55, 0.8);
+    box-shadow: 
+      0 15px 50px rgba(139, 69, 19, 0.6),
+      0 0 40px rgba(212, 175, 55, 0.4),
+      inset 0 1px 0 rgba(212, 175, 55, 0.3);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+// ========================================
+// ANIMACIONES
+// ========================================
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
     opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomInRotate {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-5deg);
+  }
+  60% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes moveGradient {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(20px, 20px);
+  }
+}
+
+// ========================================
+// RESPONSIVE
+// ========================================
+
+@media (max-width: 768px) {
+  .day-overlay {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+
+    .overlay-content {
+      width: 100%;
+      max-height: 50%;
+    }
+
+    .image-preview {
+      width: 100%;
+      height: 250px;
+      order: -1;
+
+      .preview-placeholder,
+      .preview-image {
+        max-height: 250px;
+      }
+    }
+  }
+
+  .hermandad {
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+
+    &:hover,
+    &.active {
+      transform: translateX(5px) scale(1.02);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .day-overlay {
+    padding: 1rem;
+  }
+
+  .hermandad {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.8rem;
   }
 }

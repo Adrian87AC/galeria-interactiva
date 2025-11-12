@@ -1,5 +1,41 @@
-$color-primario: rgba(0, 0, 0, 0.7);
-$color-texto: black;
-$fuente-principal: 'Arial', sans-serif;
-$tamaño-imagen: 150px;
-$altura-imagen: 100px
+// ========================================
+// VARIABLES SASS - Colores y Tipografía Premium
+// ========================================
+
+// ---- COLORES PRINCIPALES ----
+$color-dorado: #d4af37;
+$color-dorado-claro: #f4e4c1;
+$color-dorado-oscuro: #c9a959;
+$color-marron: #8b4513;
+$color-marron-oscuro: #654321;
+$color-texto-oscuro: #1a1a1a;
+$color-fondo-oscuro: #0a0a0a;
+
+// ---- OVERLAY ----
+$overlay-bg-start: rgba(0, 0, 0, 0.97);
+$overlay-bg-end: rgba(20, 10, 10, 0.95);
+
+// ---- TIPOGRAFÍA ----
+$font-heading: 'Playfair Display', serif;
+$font-main: 'Lato', sans-serif;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// ---- TRANSICIONES ----
+$transition-speed: 0.4s;
+$transition-speed-slow: 0.6s;
+$transition-timing: cubic-bezier(0.23, 1, 0.32, 1);
+
+// ---- ESPACIADO Y BORDES ----
+$border-radius: 15px;
+$border-radius-large: 20px;
+$border-radius-xl: 25px;
+$card-padding: 1.3rem 2rem;
+
+// ---- SOMBRAS ----
+$shadow-small: 0 5px 20px rgba(0, 0, 0, 0.15);
+$shadow-medium: 0 10px 40px rgba(212, 175, 55, 0.4);
+$shadow-large: 0 25px 80px rgba(0, 0, 0, 0.7);
+$shadow-glow: 0 0 30px rgba(212, 175, 55, 0.2);

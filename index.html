@@ -1,242 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Galería Interactiva de Adrián - Hermandades Sevillanas</title>
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body>
-        <header>
-            <h1>Galería Interactiva - Semana Santa de Sevilla</h1>
-            <p>Pasa el ratón sobre cada día para ver las hermandades</p>
-        </header>
-        <main>
-            <section class="semana-santa">
-                <h2>Procesiones de la Semana Santa</h2>
-                
-                <!-- ========================================
-                     TARJETA: DOMINGO DE RAMOS
-                     ======================================== -->
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>Domingo de Ramos</h3>
-                        <p class="day-description">Hermandades procesionantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/borriquita.jpg" alt="La Borriquita">
-                                <div class="image-overlay">
-                                    <p>La Borriquita</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Santa Cena.jpg" alt="La Santa Cena">
-                                <div class="image-overlay">
-                                    <p>La Santa Cena</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/Jesús Despojado.jpg" alt="Jesús Despojado">
-                                <div class="image-overlay">
-                                    <p>Jesús Despojado</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Paz.jpg" alt="La Paz">
-                                <div class="image-overlay">
-                                    <p>La Paz</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>Lunes Santo</h3>
-                        <p class="day-description">Hermandades procesionantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/Beso de Judas.jpg" alt="Beso de Judas">
-                                <div class="image-overlay">
-                                    <p>Beso de Judas</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/San Gonzalo.jpg" alt="San Gonzalo">
-                                <div class="image-overlay">
-                                    <p>San Gonzalo</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/San Pablo.jpg" alt="San Pablo">
-                                <div class="image-overlay">
-                                    <p>San Pablo</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/Santa Marta.jpg" alt="Santa Marta">
-                                <div class="image-overlay">
-                                    <p>Santa Marta</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana Santa de Sevilla - Galería Interactiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Semana Santa de Sevilla</h1>
+      <div class="divider"></div>
+      <p class="subtitle">Una tradición centenaria · Pasión y devoción</p>
+      <p class="subtitle" style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.6;">Pasa el cursor sobre cada día para descubrir sus hermandades</p>
+    </header>
 
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>Martes Santo</h3>
-                        <p class="day-description">Hermandades procesionantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/El Cerro.jpg" alt="El Cerro">
-                                <div class="image-overlay">
-                                    <p>El Cerro</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/San Benito.jpg" alt="San Benito">
-                                <div class="image-overlay">
-                                    <p>San Benito</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/Dulce Nombre.jpg" alt="Dulce Nombre">
-                                <div class="image-overlay">
-                                    <p>Dulce Nombre</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Candelaria.jpg" alt="La Candelaria">
-                                <div class="image-overlay">
-                                    <p>La Candelaria</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="gallery">
+      <!-- DOMINGO DE RAMOS -->
+      <div class="day-card">
+        <div class="day-count">1</div>
+        <div class="day-header">
+          <h3>Domingo de Ramos</h3>
+          <p>Entrada Triunfal · 4 Hermandades</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/borriquita.jpg">La Borriquita</div>
+            <div class="hermandad" data-image="imagenes/cena.jpg">La Cena</div>
+            <div class="hermandad" data-image="imagenes/despojado.jpg">Jesús Despojado</div>
+            <div class="hermandad" data-image="imagenes/paz.jpg">La Paz</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
 
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>Miércoles Santo</h3>
-                        <p class="day-description">Hermandades procesionantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/El Carmen Doloroso.jpg" alt="El Carmen Doloroso">
-                                <div class="image-overlay">
-                                    <p>El Carmen Doloroso</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Sed.jpg" alt="La Sed">
-                                <div class="image-overlay">
-                                    <p>La Sed</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/El Buen Fin.jpg" alt="El Buen Fin">
-                                <div class="image-overlay">
-                                    <p>El Buen Fin</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/San Bernardo.jpg" alt="San Bernardo">
-                                <div class="image-overlay">
-                                    <p>San Bernardo</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- LUNES SANTO -->
+      <div class="day-card">
+        <div class="day-count">2</div>
+        <div class="day-header">
+          <h3>Lunes Santo</h3>
+          <p>Recogimiento · 4 Hermandades</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/beso-judas.jpg">Beso de Judas</div>
+            <div class="hermandad" data-image="imagenes/san-gonzalo.jpg">San Gonzalo</div>
+            <div class="hermandad" data-image="imagenes/santa-marta.jpg">Santa Marta</div>
+            <div class="hermandad" data-image="imagenes/san-pablo.jpg">San Pablo</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
 
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>Jueves Santo</h3>
-                        <p class="day-description">Hermandades procesionantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/Monte-Sion.jpg" alt="Monte-Sion">
-                                <div class="image-overlay">
-                                    <p>Monte-Sion</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/Los Negritos.jpg" alt="Los Negritos">
-                                <div class="image-overlay">
-                                    <p>Los Negritos</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/El Valle.jpg" alt="El Valle">
-                                <div class="image-overlay">
-                                    <p>El Valle</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Quinta Angustia.jpg" alt="La Quinta Angustia">
-                                <div class="image-overlay">
-                                    <p>La Quinta Angustia</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- MARTES SANTO -->
+      <div class="day-card">
+        <div class="day-count">3</div>
+        <div class="day-header">
+          <h3>Martes Santo</h3>
+          <p>Devoción · 4 Hermandades</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/el-cerro.jpg">El Cerro</div>
+            <div class="hermandad" data-image="imagenes/san-benito.jpg">San Benito</div>
+            <div class="hermandad" data-image="imagenes/dulce-nombre.jpg">Dulce Nombre</div>
+            <div class="hermandad" data-image="imagenes/candelaria.jpg">La Candelaria</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
 
-                <div class="day-card">
-                    <div class="day-header">
-                        <h3>La Madrugá (Viernes Santo)</h3>
-                        <p class="day-description">Las procesiones más importantes</p>
-                    </div>
-                    
-                    <div class="day-overlay">
-                        <div class="gallery-grid">
-                            <div class="image-item">
-                                <img src="imagenes/El Silencio.jpg" alt="El Silencio">
-                                <div class="image-overlay">
-                                    <p>El Silencio</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Macarena.jpg" alt="La Macarena">
-                                <div class="image-overlay">
-                                    <p>La Macarena</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/El Gran Poder.jpg" alt="El Gran Poder">
-                                <div class="image-overlay">
-                                    <p>El Gran Poder</p>
-                                </div>
-                            </div>
-                            <div class="image-item">
-                                <img src="imagenes/La Esperanza de Triana.jpg" alt="La Esperanza de Triana">
-                                <div class="image-overlay">
-                                    <p>La Esperanza de Triana</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- MIÉRCOLES SANTO -->
+      <div class="day-card">
+        <div class="day-count">4</div>
+        <div class="day-header">
+          <h3>Miércoles Santo</h3>
+          <p>Pasión · 4 Hermandades</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/carmen-doloroso.jpg">El Carmen Doloroso</div>
+            <div class="hermandad" data-image="imagenes/la-sed.jpg">La Sed</div>
+            <div class="hermandad" data-image="imagenes/buen-fin.jpg">El Buen Fin</div>
+            <div class="hermandad" data-image="imagenes/san-bernardo.jpg">San Bernardo</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
 
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2025 Galería Interactiva - Semana Santa Sevillana | Ejercicio de SASS y CSS</p>
-        </footer>
-    </body>
+      <!-- JUEVES SANTO -->
+      <div class="day-card">
+        <div class="day-count">5</div>
+        <div class="day-header">
+          <h3>Jueves Santo</h3>
+          <p>Eucaristía · 4 Hermandades</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/monte-sion.jpg">Monte-Sion</div>
+            <div class="hermandad" data-image="imagenes/negritos.jpg">Los Negritos</div>
+            <div class="hermandad" data-image="imagenes/valle.jpg">El Valle</div>
+            <div class="hermandad" data-image="imagenes/quinta-angustia.jpg">Quinta Angustia</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
+
+      <!-- LA MADRUGÁ -->
+      <div class="day-card special-card">
+        <div class="day-count">⭐</div>
+        <div class="day-header">
+          <h3>La Madrugá</h3>
+          <p>La Noche Más Esperada · Viernes Santo</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/silencio.jpg">El Silencio</div>
+            <div class="hermandad" data-image="imagenes/macarena.jpg">La Macarena</div>
+            <div class="hermandad" data-image="imagenes/gran-poder.jpg">El Gran Poder</div>
+            <div class="hermandad" data-image="imagenes/triana.jpg">Esperanza de Triana</div>
+            <div class="hermandad" data-image="imagenes/gitanos.jpg">Los Gitanos</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
+
+      <!-- DOMINGO DE RESURRECCIÓN -->
+      <div class="day-card">
+        <div class="day-count">7</div>
+        <div class="day-header">
+          <h3>Domingo de Resurrección</h3>
+          <p>Aleluya · Fin de la Semana Santa</p>
+        </div>
+        <div class="day-overlay">
+          <div class="overlay-content">
+            <div class="hermandad" data-image="imagenes/resucitado.jpg">Hermandad del Resucitado</div>
+            <div class="hermandad" data-image="imagenes/gloria.jpg">Gloria y Alegría en Sevilla</div>
+          </div>
+          <div class="image-preview">
+            <div class="preview-placeholder">
+              <p>Pasa el cursor sobre una hermandad<br>para contemplar su imagen</p>
+            </div>
+            <img class="preview-image" src="" alt="Vista previa">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <p>© 2025 Semana Santa de Sevilla · Patrimonio Cultural de la Humanidad</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
